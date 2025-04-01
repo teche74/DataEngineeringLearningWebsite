@@ -1,0 +1,268 @@
+body {
+    background-color: #121212;
+    color: #00ff00;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+.title {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.terminal-box {
+    background: black;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 1.2em;
+    width: 800px;  /* Fixed width */
+    text-align: left;
+    position: relative;
+    border: 2px solid #00ff00;
+    margin-top: 20px;
+    white-space: pre-wrap;  /* Ensures text wraps onto new lines */
+    word-wrap: break-word;  /* Ensures long words break and wrap to the next line */
+    overflow-wrap: break-word;  /* Same as word-wrap, for better compatibility */
+    overflow: visible;  /* Allow content to grow vertically without clipping */
+    min-height: 100px;  /* Set a minimum height */
+    box-sizing: border-box;  /* Include padding in width */
+}
+
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.2em;
+    background-color: #00ff00;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+}
+
+
+.command {
+    color: #ffcc00;
+}
+
+.output-explanation {
+    background-color: #333;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1em;
+    display: none;
+}
+
+
+.command {
+    color: #ffcc00;
+}
+
+.highlight {
+    color: #ff4444;
+}
+
+.blinking-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background-color: #00ff00;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.ascii-art {
+    white-space: pre;
+    font-size: 12px;
+    color: #00ff00;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #121212;
+    background-color: #00ff00;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #ffcc00;
+}
+
+.output-explanation {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #ffcc00;
+    text-align: left;
+    width: 800px;
+}
+
+#explanation1 {
+    display: block !important;
+}
+
+#explanation2 {
+    display: block !important;
+}
+
+.command-section {
+    margin-bottom: 40px;
+}
+
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: -280px; /* Hidden by default */
+    top: 0;
+    background-color: #111;
+    padding: 20px;
+    border-right: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: monospace;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+}
+
+/* Sidebar Hover Effect */
+.sidebar:hover {
+    left: 0; /* Slide in when hovered */
+}
+
+/* Sidebar Links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #00ff00;
+    font-size: 1.1em;
+    display: block;
+    padding: 8px;
+    transition: background 0.3s, transform 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    border-left: 3px solid #00ff00;
+    transform: translateX(5px);
+}
+
+/* Adjust Content When Sidebar is Open */
+.sidebar:hover ~ .content {
+    margin-left: 280px;
+}
+
+/* Main Content */
+.content {
+    margin-left: 20px;
+    padding: 20px;
+    color: #00ff00;
+    font-family: monospace;
+    transition: margin-left 0.3s;
+}
+
+/* Terminal Cursor Effect */
+.sidebar ul li a::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+
+/* ================================== */
+/* 📱 Responsive Design Adjustments 📱 */
+/* ================================== */
+
+/* 📌 Tablets (Medium Screens) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+        left: 0; /* Sidebar always visible */
+    }
+
+    .content {
+        margin-left: 220px;
+    }
+}
+
+/* 📌 Mobile (Small Screens) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0;
+        top: 0;
+        display: none; /* Hidden by default */
+        text-align: center;
+        border-right: none;
+        border-bottom: 2px solid #00ff00;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        margin: 10px;
+    }
+
+    .sidebar ul li a {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    /* Sidebar Toggle Button */
+    .sidebar-toggle {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #00ff00;
+        color: #121212;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .sidebar.open {
+        display: block; /* Show sidebar when toggled */
+    }
+
+    .content {
+        margin-left: 0;
+        padding-top: 80px; /* Adjust for top menu */
+    }
+}

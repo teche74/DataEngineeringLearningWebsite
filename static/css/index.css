@@ -1,0 +1,260 @@
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f4e7d1;
+    color: #3e2723;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url('static/images/mahabharata-bg.jpg'); /* Use an ancient-themed image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+h1, h2, h3 {
+    color: #4e342e;
+}
+
+a {
+    text-decoration: none;
+    color: #795548;
+    font-weight: bold;
+}
+
+/* Navbar */
+.navbar {
+    background-color: rgba(33, 17, 12, 0.9);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #eaeaea;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+#intro .container {
+    position: relative;
+    padding: 20px;
+    color: #ffffff;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Cover the full container */
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio */
+    opacity: 0.4; /* Adjust opacity value */
+    z-index: -1; /* Keep behind the text */
+    filter: brightness(100%); /* Optional: adjust brightness */
+}
+
+#intro .container h2 {
+    color: #D4AF37   ;
+}
+
+#intro .container p {
+    color: #4e342e;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d4af37;
+    text-decoration: none;
+    gap: 10px;
+}
+
+.logo img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.logo:hover img {
+    transform: scale(1.1);
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    display: inline-block;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #d4af37;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover {
+    background-color: #ead410;
+    color: #f31d0a;
+}
+
+
+/* Hero Section */
+.hero {
+    padding: 100px 0;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    background-blend-mode: darken;
+}
+
+.hero h1 {
+    font-size: 48px;
+    color: #d4af37;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* Section Styling */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+    background-color: rgba(255, 248, 220, 0.8);
+    margin: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Temple Container */
+.temple-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.temple {
+    width: 100px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+/* Timeline Styling */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.timeline-item {
+    padding: 20px;
+    border: 2px solid #c49a6c;
+    background-color: #fff;
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.timeline-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Completed State */
+.timeline-item.completed {
+    background-color: #ffedd5;
+    border-color: #f59e0b;
+    position: relative;
+    transition: opacity 0.5s;
+    opacity: 0.7;
+}
+
+.timeline-item.completed .timeline-date {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.timeline-item.completed a {
+    color: #155724;
+    font-weight: bold;
+    text-decoration: line-through; /* Cross out completed chapters */
+}
+
+.timeline-item.completed::after {
+    content: '✓';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #f59e0b;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Final Chapter Highlight */
+.final-step.completed {
+    background-color: #c7e7c7;
+    border-color: #34d399;
+}
+
+/* Temple Fade-In Animation */
+.temple.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Temple Completion Glow */
+.temple.glow {
+    filter: drop-shadow(0 0 30px #f59e0b);
+    transition: filter 1s ease;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 30px;
+    background-color: #d4af37;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #b8860b;
+}
+
+/* Footer */
+.footer {
+    background-color: #3e2723;
+    color: #d4af37;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+

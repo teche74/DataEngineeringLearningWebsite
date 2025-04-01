@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Git & GitHub - Data Engineering Hub</title>
+    <link rel="stylesheet" href="/static/css/vcs_index.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- ASCII Git Logo -->
+        <pre class="ascii-logo">
+
+            ________   ___   _________        ________   ________    ________          ________   ___   _________   ___  ___   ___  ___   ________     
+            |\   ____\ |\  \ |\___   ___\     |\   __  \ |\   ___  \ |\   ___ \        |\   ____\ |\  \ |\___   ___\|\  \|\  \ |\  \|\  \ |\   __  \    
+            \ \  \___| \ \  \\|___ \  \_|     \ \  \|\  \\ \  \\ \  \\ \  \_|\ \       \ \  \___| \ \  \\|___ \  \_|\ \  \\\  \\ \  \\\  \\ \  \|\ /_   
+             \ \  \  ___\ \  \    \ \  \       \ \   __  \\ \  \\ \  \\ \  \ \\ \       \ \  \  ___\ \  \    \ \  \  \ \   __  \\ \  \\\  \\ \   __  \  
+              \ \  \|\  \\ \  \    \ \  \       \ \  \ \  \\ \  \\ \  \\ \  \_\\ \       \ \  \|\  \\ \  \    \ \  \  \ \  \ \  \\ \  \\\  \\ \  \|\  \ 
+               \ \_______\\ \__\    \ \__\       \ \__\ \__\\ \__\\ \__\\ \_______\       \ \_______\\ \__\    \ \__\  \ \__\ \__\\ \_______\\ \_______\
+                \|_______| \|__|     \|__|        \|__|\|__| \|__| \|__| \|_______|        \|_______| \|__|     \|__|   \|__|\|__| \|_______| \|_______|
+                                                                                                                                                        
+                                                                                                                                                        
+                                                                                                                                                        
+            
+        </pre>
+
+        <h1>Let's Learn Git from scratch 😁</h1>
+
+        <p><span class="cmd">$ echo "Welcome to Git & GitHub module"</span></p>
+
+        <p>
+            This website is specifically designed to help you understand Git from scratch.
+            We have taken reference from
+            <a href="https://git-scm.com/book/en/v2" target="_blank"
+                style="color:#58a6ff; text-decoration: none;">git-scm.com</a>
+            to make concepts easy to understand.
+        </p>
+
+
+
+
+        <div class="old_phase">
+            <ul>
+                <li> git-basics</li>
+            </ul>
+            <div class="git-history">
+                <h1>WHY DO WE NEED GIT?</h1>
+
+                <p>As technology advances, it brings both benefits and challenges. In the early days, people often
+                    forgot to save files, accidentally modified them, or lost critical data permanently. This led to the
+                    introduction of **Version Control Systems (VCS)** like Git to track and manage changes efficiently.
+                </p>
+            </div>
+            <p>In the initial phase, when developers had no version control systems available, they relied on manually
+                keeping multiple copies of files in local storage to prevent data loss. However, more experienced
+                developers adopted a slightly better approach—storing copies with timestamps to track updates.</p>
+
+            <img src="/assets/no_vcs_approach.png" alt="" width="650px">
+
+            <h2>PROBLEMS WITH NAIVE AND CLEVER APPROACHES</h2>
+            <ul>
+                <li>Since the entire file is duplicated every time a change is made, this approach consumes a large
+                    amount of storage space.</li>
+                <li>Manually identifying changes across multiple versions is tedious, inefficient, and error-prone.</li>
+                <li>Keeping track of updates using timestamps does not prevent accidental overwrites or loss of
+                    important changes.</li>
+            </ul>
+
+            <h2>SOLUTION</h2>
+            <p>To overcome these issues, **Version Control Systems (VCS)** were introduced. A VCS is a system that saves
+                data at different checkpoints, allowing users to retrieve previous versions in case of accidental
+                modifications or deletions. It also enables reverting to a stable state if compatibility issues arise
+                and helps track changes over time.</p>
+
+            <h2>LOCAL VERSION CONTROL SYSTEM (VCS)</h2>
+            <p>To improve upon manual versioning, programmers created a **Local Version Control System**, where a
+                database keeps track of all changes made to a file under revision control.</p>
+
+            <img src="/assets/localvcs.png" alt="" width="650px">
+
+            <p>This approach addresses several issues:</p>
+            <ul>
+                <li>Maintains an ordered history of recent modifications.</li>
+                <li>Each file has its own version-controlled database.</li>
+                <li>Reduces storage consumption by tracking only changes instead of duplicating entire files.</li>
+            </ul>
+
+            <h2>REVISION CONTROL SYSTEM (RCS)</h2>
+            <p>
+                A **Revision Control System (RCS)** was introduced to further optimize storage by storing **only the
+                differences** (patches) between versions instead of full copies of each file. This approach is **more
+                efficient** since we no longer need to save entire files for every change.
+            </p>
+
+            <p>
+                To reconstruct any version of a file, RCS starts from the **base version** and applies all patch sets
+                sequentially to rebuild the desired version.
+            </p>
+
+            <h3>Example:</h3>
+            <p>**Base Version:** `"Hello World"`</p>
+            <p>**Patch 1:** `+!` → `"Hello World!"`</p>
+            <p>**Patch 2:** `+ Welcome` → `"Hello World! Welcome"`</p>
+
+            <p>
+                If we want to retrieve **Version 1**, RCS starts from the base version and applies patches sequentially
+                **until Patch 1** is reached:
+            </p>
+
+            <p><strong>Base Version + Patch 1:</strong> `"Hello World"` + `"!"` = `"Hello World!"`</p>
+
+            <h2>PROBLEMS WITH LOCAL VCS</h2>
+            <p>While local VCS solves some issues, it introduces new limitations:</p>
+            <ul>
+                <li>**No Collaboration:** Local VCS is limited to a single system, meaning multiple developers cannot
+                    work on the same project collaboratively.</li>
+                <li>**No Remote Backup:** If the local machine crashes or data is lost, all version history is lost as
+                    well.</li>
+                <li>**Limited Change Tracking:** Although RCS tracks changes efficiently, it does not support branching,
+                    merging, or distributed development.</li>
+            </ul>
+
+            <h2>CENTRALIZED VERSION CONTROL SYSTEMS (CVCS's)</h2>
+            <p>In a **Local VCS**, users cannot collaborate efficiently because each developer maintains their own
+                **individual version control database**. This makes it difficult for others to contribute, track
+                progress, or understand ongoing changes. Additionally, managing updates requires **direct
+                communication** between developers, making collaboration inefficient.</p>
+            <p>To solve these issues, **Centralized Version Control Systems (CVCSs)** were introduced. In a **CVCS**,
+                all versioned files are stored in a **centralized database**, allowing multiple developers to:</p>
+            Work collaboratively on the same project.
+
+            Track changes made by other team members.
+
+            Avoid conflicts and ensure smoother project management.
+
+            <p>This architecture also gives administrators **greater control** over the workflow. Since all changes go
+                through a central server, admins can **review modifications, approve or discard changes, and maintain a
+                clear history of the project's development**. This makes **CVCSs more structured and manageable**
+                compared to **Local VCS**.</p>
+
+
+            <h2>PROBLEM WITH CVCS'S</h2>
+            <p>While **Centralized Version Control Systems (CVCSs)** solve the collaboration issues of Local VCS, they
+                come with their own challenges. The biggest drawback is the **Single Point of Failure**, meaning:</p>
+            <ul>
+                <li>If the **centralized server goes down**, no one can make changes or access version history until it
+                    is restored.</li>
+                <li>If the **central database is corrupted or lost**, the entire project history and data could be
+                    permanently lost—**unless proper backups are maintained**.</li>
+            </ul>
+            <p>These limitations led to the development of **Distributed Version Control Systems (DVCSs)**, which
+                address the risks associated with centralization.</p>
+        </div>
+
+
+        <div class="modern_archi">
+            <h2>DISTRIBUTED VERSION CONTROL SYSTEM (DVCS's)</h2>
+            <p>**Distributed Version Control Systems (DVCSs)** introduce a **game-changing approach** where every client
+                has a **complete replica of the repository**, including its entire history. Unlike **Centralized VCS**,
+                DVCS does **not depend solely on a central server** to function.</p>
+            <p>Even if the central server crashes or goes offline, developers can **continue working locally**. Once the
+                server is back online, their changes can be synchronized, ensuring **no data is lost** and
+                **collaboration remains seamless**.</p>
+            <img src="/assets/dvcs.png" width="650px" alt="">
+            Example : Git, Mercurial.
+
+            <div class="git-special">
+                <h2>WHY IS GIT SPECIAL?</h2>
+
+                <p>Git operates fundamentally differently in terms of data management, setting it apart from other
+                    Distributed Version Control Systems (DVCS).</p>
+
+                <ul>
+                    <li><strong>SNAPSHOT, NOT DIFFERENCES</strong></li>
+                </ul>
+                <p>Other DVCSs track changes by capturing patches, storing differences between versions. They treat
+                    information as a series of files with incremental modifications over time.</p>
+                <img src="/assets/dvcs_path_approach.png" alt="DVCS Path Approach">
+
+                <p>In contrast, Git stores snapshots—essentially miniature file systems. Each commit captures the state
+                    of all files at that moment, referencing previous versions efficiently if unchanged. This approach
+                    treats data as a sequence of snapshots.</p>
+                <img src="/assets/git_snapshot.png" alt="Git Snapshot">
+
+                <ul>
+                    <li><strong>EVERY OPERATION IS LOCAL</strong></li>
+                </ul>
+                <p>When cloning a repository, Git downloads the entire project history, allowing most operations to be
+                    performed locally. This improves speed and enables offline work, with changes synchronized later.
+                </p>
+                <img src="/assets/git_file_diff.png" alt="Git File Difference">
+
+                <ul>
+                    <li><strong>GIT INTEGRITY</strong></li>
+                </ul>
+                <p>Git ensures integrity by checksumming every file using the SHA-1 algorithm before storing it. This
+                    prevents undetected corruption, as each file's content is securely hashed and stored.</p>
+
+                <ul>
+                    <li><strong>GIT ONLY APPENDS DATA</strong></li>
+                </ul>
+                <p>Git follows an append-only model. Instead of modifying or deleting data, it continuously adds new
+                    entries. This guarantees a growing history without overwriting past changes, making it difficult to
+                    lose data after a commit.</p>
+            </div>
+
+
+            <div class="git-states">
+                <h2>THE 3 STATES OF A FILE IN GIT</h2>
+                <p>In the Git ecosystem, a file is always in one of the following stages throughout its lifecycle:</p>
+
+                <h3>MODIFIED</h3>
+                <p>The file has been changed but is not yet recorded in Git's database.</p>
+
+                <h3>STAGED</h3>
+                <p>The modified file is marked to be included in the next commit.</p>
+
+                <h3>COMMITTED</h3>
+                <p>The file has been safely stored in Git's database.</p>
+
+                <h2>THE 3 MAIN SECTIONS OF A GIT PROJECT</h2>
+                <p>A Git project consists of three key sections:</p>
+
+                <h3>WORKING TREE</h3>
+                <p>Contains the latest pulled data from the remote repository. Changes made here are not yet tracked by
+                    Git.</p>
+
+                <h3>STAGING AREA</h3>
+                <p>Prepares files before committing them. The staging area signals, "I want these changes in my next
+                    commit." Files not added here will not be included in the commit.</p>
+                <p><span>git add .</span>: This command stages all modified files.</p>
+
+                <h3>GIT DIRECTORY</h3>
+                <p>The Git directory stores everything, including project history, metadata, and previous versions. It
+                    resides inside the <code>.git</code> folder. When cloning a project, this directory is copied.</p>
+
+                <img src="/assets/section_git_project.png" alt="Git Project Sections">
+            </div>
+
+            <div class="git-workflow">
+                <h2>GIT WORKFLOW</h2>
+                <p>I will modify/update or add new files in my working tree.</p>
+                <p>I will choose specific files to be in the staging area for the next commit.</p>
+                <p>The final commit leads to adding a permanent snapshot in the Git directory.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="terminal-panel">
+        <pre class="terminal-header">$ select a chapter to navigate:</pre>
+        <ul class="chapter-list">
+            <li><span class="prompt">➜</span> <a href="/VersionControlSystem/first_time_config.html">Chapter 1: First Time User Git Config</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 2: Ways To Get A Repo</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 3: Record Changes done in Repo</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 4: Checking Status of File</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 5: Ignoring Files</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 6: View Of Staged And Unstaged One's</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 7: Committing Changes</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 8: Skip Staging</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 9: Know How To Remove Files</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 10: How to Move Files</a></li>
+            <li><span class="prompt">➜</span> <a href="#">Chapter 11: View Entire Commit History</a></li>
+        </ul>
+    </div>
+    
+    <a href="../index.html" class="btn">Back to Roadmap</a>
+        <script src="/static/js/vcs_index.js"></script>
+</body>
+
+</html>
