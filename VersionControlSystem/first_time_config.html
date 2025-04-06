@@ -9,22 +9,24 @@
 </head>
 
 <body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
 
     <div class="sidebar">
         <h2>📜 Chapters</h2>
         <ul>
-            <li><a href="/VersionControlSystem/vcs_main.html"> Why Git Exists ? </a>></li>
-            <li><a href="/VersionControlSystem/first_time_config.html">> Chapter 1: First Time User Git Config</a></li>
-            <li><a href="#">Chapter 2: Ways To Get A Repo</a></li>
-            <li><a href="#">Chapter 3: Record Changes done in Repo</a></li>
-            <li><a href="#">Chapter 4: Checking Status of File</a></li>
-            <li><a href="#">Chapter 5: Ignoring Files</a></li>
-            <li><a href="#">Chapter 6: View Of Staged And Unstaged One's</a></li>
-            <li><a href="#">Chapter 7: Committing Changes</a></li>
+            <li><a href="/VersionControlSystem/vcs_main.html">Why Git Exists?</a></li>
+            <li><a href="/VersionControlSystem/first_time_config.html">Chapter 1: Git Config</a></li>
+            <li><a href="/VersionControlSystem/getrepoways.html">Chapter 2: Ways to Get a Repo</a></li>
+            <li><a href="/VersionControlSystem/recordchanges.html">Chapter 3: Record Changes</a></li>
+            <li><a href="/VersionControlSystem/checking_status.html" class="active">Chapter 4: Checking File Status</a>
+            </li>
+            <li><a href="/VersionControlSystem/gitignore.html">Chapter 5: Ignoring Files</a></li>
+            <li><a href="/VersionControlSystem/StagedorUnstaged.html">Chapter 6: Staged vs Unstaged</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 7: Committing , Skip Stagging , Removing Files and Moving Files</a></li>
             <li><a href="#">Chapter 8: Skip Staging</a></li>
-            <li><a href="#">Chapter 9: Know How To Remove Files</a></li>
-            <li><a href="#">Chapter 10: How to Move Files</a></li>
-            <li><a href="#">Chapter 11: View Entire Commit History</a></li>
+            <li><a href="#">Chapter 9: Remove Files</a></li>
+            <li><a href="#">Chapter 10: Move Files</a></li>
+            <li><a href="#">Chapter 11: Commit History</a></li>
         </ul>
     </div>
     <div class="ascii-art">
@@ -53,7 +55,7 @@
     </div>
 
     <div class="command-section" id="section2">
-        <h2>Step 1: Setting Up Personal Identity</h2>
+        <h2>Step 2: Setting Up Personal Identity</h2>
         <p class = "info">Note : We have to setup basic info because git use this info for every commit done.</p>
         <div class="terminal-box" id="terminal2">
             <pre id="output2"></pre>
@@ -61,6 +63,70 @@
         <button id="show-command2">Show Command</button>
         <button id="show-output2" style="display:none;">Show Output and Explanation</button>
         <div class="output-explanation" id="explanation2"></div>
+    </div>
+
+
+    <div class="command-section" id="section3">
+        <h2>Change Editor ( Optional )</h2>
+        <p class = "info">We can modify the editor for git commands according to our ease or requirement.</p>
+        <div class="terminal-box" id="terminal3">
+            <pre id="output3"></pre>
+        </div>
+        <button id="show-command3">Show Command</button>
+        <button id="show-output3" style="display:none;">Show Output and Explanation</button>
+        <div class="output-explanation" id="explanation3"></div>
+    </div>
+
+
+    <div class="command-section" id="section4">
+        <h2>Step 3 : Setting up Default Branch Name</h2>
+        <p class = "info">Git by default create branch called `master`, We can alter it.</p>
+        <div class="terminal-box" id="terminal4">
+            <pre id="output4"></pre>
+        </div>
+        <button id="show-command4">Show Command</button>
+        <button id="show-output4" style="display:none;">Show Output and Explanation</button>
+        <div class="output-explanation" id="explanation4"></div>
+    </div>
+
+
+    <div class="command-section" id="section5">
+        <h2>Step 4 : To Get Help For Command</h2>
+        <p class = "info">If you get stuck with parameters for a command you can use `git help`</p>
+        <div class="terminal-box" id="terminal5">
+            <pre id="output5"></pre>
+        </div>
+        <button id="show-command5">Show Command</button>
+        <button id="show-output5" style="display:none;">Show Output and Explanation</button>
+        <div class="output-explanation" id="explanation5"></div>
+    </div>
+
+
+    <button id="start-game">Start Git Challenge</button>
+    <div class="game-container" style="display: none;">
+        <h1 class="glitch-title">Git Command Challenge</h1>
+        <p class="instructions">Write the correct Git command for the given task before time runs out!</p>
+        
+        <div class="command-box">
+            <p id="task-instruction"></p>
+            <input type="text" id="user-input" placeholder="Enter Git command...">
+            <button id="submit-answer">Submit</button>
+        </div>
+        
+        <div class="score-container">
+            <div class="progress-circle">
+                <svg width="200" height="200">
+                    <circle cx="100" cy="100" r="90" stroke="#00ff00" stroke-width="10" fill="none" id="progress-ring"/>
+                </svg>
+                <span id="score-display">0</span>
+            </div>
+        </div>
+        
+        <p id="timer-display">Time Left: <span id="time-left">60</span> sec</p>
+        <button id="retry-game">Retry</button>
+
+
+        <div id="game-result" class="terminal-output" style="display: none;"></div>
     </div>
 
 

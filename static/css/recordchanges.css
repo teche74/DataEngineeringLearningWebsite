@@ -1,0 +1,343 @@
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: -280px;
+    /* Hidden by default */
+    top: 0;
+    background-color: #111;
+    padding: 20px;
+    border-right: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: monospace;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+}
+
+/* Sidebar Hover Effect */
+.sidebar:hover {
+    left: 0;
+    /* Slide in when hovered */
+}
+
+/* Sidebar Links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #00ff00;
+    font-size: 1.1em;
+    display: block;
+    padding: 8px;
+    transition: background 0.3s, transform 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    border-left: 3px solid #00ff00;
+    transform: translateX(5px);
+}
+
+/* Adjust Content When Sidebar is Open */
+.sidebar:hover~.content {
+    margin-left: 280px;
+}
+/* 🎨 General Styling */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* 📌 Sidebar */
+.sidebar {
+    width: 250px;
+    background: #1e1e1e;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 2px solid #00ff00;
+}
+
+.sidebar h2 {
+    color: #00ff00;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: #00ff00;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+/* 🎨 General Styling */
+body {
+    background-color: #181818;
+    color: #eeeeee;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* ========================= */
+/* 📌 Sidebar Navigation */
+/* ========================= */
+.sidebar {
+    width: 260px;
+    background: #202020;
+    padding: 20px;
+    position: fixed;
+    height: 100vh;
+    overflow-y: auto;
+    border-right: 3px solid #00ff99;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar h2 {
+    color: #00ff99;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #00ff99;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+}
+
+.sidebar ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s, padding-left 0.2s;
+}
+
+.sidebar ul li a:hover {
+    background: #00ff99;
+    color: #181818;
+    padding-left: 15px;
+}
+
+/* ========================= */
+/* 📖 Main Content */
+/* ========================= */
+.content {
+    margin-left: 280px;
+    padding: 30px;
+    max-width: 850px;
+}
+
+/* 🔹 Chapter Title */
+.title {
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0px 0px 8px #00ff99;
+    border-left: 5px solid #00ff99;
+    padding-left: 15px;
+    margin-bottom: 25px;
+}
+
+/* ========================= */
+/* 📂 Git File Categories */
+/* ========================= */
+.section-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 153, 0.2);
+    border-left: 5px solid #00ff99;
+    transition: transform 0.3s ease;
+}
+
+.section-card:hover {
+    transform: translateY(-3px);
+}
+
+/* 🎯 Highlights */
+.highlight {
+    color: #ffcc00;
+    font-weight: bold;
+}
+
+/* ========================= */
+/* 🎨 Mermaid Diagram */
+/* ========================= */
+.mermaid {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    box-shadow: 0px 0px 8px rgba(0, 255, 153, 0.3);
+}
+
+/* ========================= */
+/* 🚀 Next Chapter Button */
+/* ========================= */
+.next-chapter {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 18px;
+    background: linear-gradient(45deg, #00ff99, #00cc88);
+    color: #181818;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px rgba(0, 255, 153, 0.5);
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: linear-gradient(45deg, #00cc88, #009977);
+    box-shadow: 0px 0px 15px rgba(0, 255, 153, 0.8);
+}
+
+/* ========================= */
+/* 📱 Responsive Design Adjustments */
+/* ========================= */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 220px;
+    }
+    .content {
+        margin-left: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        display: none;
+        text-align: center;
+        border-bottom: 3px solid #00ff99;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        margin: 8px;
+    }
+
+    .sidebar ul li a {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+/* ========================= */
+/* 🎮 Scrollbar Customization */
+/* ========================= */
+.sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #00ff99;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #44ff99;
+}
+
+
+/* mermaid styling */
+/* Mermaid Container Styling */
+.mermaid {
+    text-align: center;
+    background-color: #1e1e1e; /* Dark theme */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Mermaid Participant (Node) Styling */
+.mermaid .actor {
+    fill: #ff6699 !important; /* Pink color for User */
+    stroke: #000 !important;
+    font-weight: bold;
+}
+
+/* Styling Working Directory */
+.mermaid .participant:nth-child(2) rect {
+    fill: #ffcc99 !important; /* Light Orange */
+}
+
+/* Styling Staging Area */
+.mermaid .participant:nth-child(3) rect {
+    fill: #99ccff !important; /* Light Blue */
+}
+
+/* Styling Local Repository */
+.mermaid .participant:nth-child(4) rect {
+    fill: #99ff99 !important; /* Light Green */
+}
+
+/* Arrows and Lines */
+.mermaid .messageLine0 {
+    stroke: #00ff00 !important; /* Neon Green */
+    stroke-width: 2px;
+}
+
+/* ✨ NEW: White text on arrows for better visibility */
+.mermaid .messageText {
+    fill: white !important;  /* Sets the text on arrows to white */
+    font-size: 14px !important;
+    font-weight: bold;
+}
+
+.sidebar-toggle {
+    display: none;
+}

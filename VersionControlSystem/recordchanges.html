@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Repository Learning</title>
+    <link rel="stylesheet" href="/static/css/recordchanges.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.4/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            themeVariables: {
+                fontSize: "22px", 
+                nodeBorder: "3px solid #00ff00", 
+                primaryColor: "#ffcc00",
+                edgeLabelBackground: "#222" 
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <!-- 📌 Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>📜 Chapters</h2>
+        <ul>
+            <li><a href="/VersionControlSystem/vcs_main.html">Why Git Exists?</a></li>
+            <li><a href="/VersionControlSystem/first_time_config.html">Chapter 1: Git Config</a></li>
+            <li><a href="/VersionControlSystem/getrepoways.html">Chapter 2: Ways to Get a Repo</a></li>
+            <li><a href="/VersionControlSystem/recordchanges.html">Chapter 3: Record Changes</a></li>
+            <li><a href="/VersionControlSystem/checking_status.html" class="active">Chapter 4: Checking File Status</a>
+            </li>
+            <li><a href="/VersionControlSystem/gitignore.html">Chapter 5: Ignoring Files</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 6: Staged vs Unstaged</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 7: Committing , Skip Stagging , Removing Files and Moving Files</a></li>
+            <li><a href="#">Chapter 8: Skip Staging</a></li>
+            <li><a href="#">Chapter 9: Remove Files</a></li>
+            <li><a href="#">Chapter 10: Move Files</a></li>
+            <li><a href="#">Chapter 11: Commit History</a></li>
+        </ul>
+    </div>
+
+    <!-- 📌 Main Content -->
+    <main class="content">
+        <h1 class="title">📖 Chapter 3: Tracking Changes in Git</h1>
+
+        <section class="git-file-category">
+            <p>
+                After creating a Git repository (either by cloning with
+                <span class="highlight">git clone `repo-url`</span>
+                or initializing with
+                <span class="highlight">git init</span>),
+                Git organizes your files into two categories:
+            </p>
+            <ul>
+                <li><span class="highlight">Tracked Files:</span> Files Git is monitoring. This includes committed files
+                    and files staged for the next commit.</li>
+                <li><span class="highlight">Untracked Files:</span> New files Git hasn’t been told to track yet.</li>
+            </ul>
+        </section>
+
+        <section class="tracked-file-category">
+            <p>Tracked files can exist in one of three states:</p>
+            <div class="mermaid">
+                graph LR;
+                A["Tracked Files"] --> B["📂 Unmodified (No Changes)"];
+                A --> C["✏️ Modified (Changes Made)"];
+                A --> D["📌 Staged (Ready to Commit)"];
+
+                style A fill:#ffcc00,stroke:#000,stroke-width:2px;
+                style B fill:#99ff99,stroke:#000,stroke-width:2px;
+                style C fill:#ff9966,stroke:#000,stroke-width:2px;
+                style D fill:#66ccff,stroke:#000,stroke-width:2px;
+            </div>
+        </section>
+
+        <section class="explanation">
+            <h2>📌 Understanding File States</h2>
+            <p><b>Unmodified:</b> The file is unchanged since the last commit.</p>
+            <p><b>Modified:</b> The file has been changed but not yet staged.</p>
+            <p><b>Staged:</b> The file is prepared for the next commit.</p>
+        </section>
+
+
+        <section class="sequence_diag">
+            <div class="mermaid">
+                sequenceDiagram
+                autonumber
+                actor User as 👨‍💻 User
+                participant WD as 📂 Working Directory
+                participant SA as 📌 Staging Area
+                participant LR as 📜 Local Repository
+
+                User ->> WD: Creates a new file (❌ Untracked)
+                WD ->> User: File is Untracked
+
+                User ->> SA: Runs `git add` (📥 Staged)
+                SA ->> User: File is now Tracked and Staged
+
+                User ->> LR: Runs `git commit` (✅ Committed)
+                LR ->> User: File is safely stored in the Repository
+
+                User ->> WD: Modifies the file (📝 Modified)
+                WD ->> User: File changes detected!
+
+                User ->> SA: Runs `git add` again (📥 Staged Again)
+                SA ->> User: Changes prepared for commit
+
+                User ->> LR: Runs `git commit` again (🔄 Committed Again)
+                LR ->> User: Changes permanently saved!
+
+            </div>
+
+            <p>
+                you can understand this way also :
+            </p>
+
+
+            <div class="mermaid">
+                graph LR;
+                A[Untracked] -->|Add the file| B[Unmodified]
+                B -->|Edit the file| C[Modified]
+                C -->|Stage the file| D[Staged]
+                D -->|Commit| B
+                B -->|Remove the file| A
+
+                %% Styling for a better appearance
+                style A fill:#d3d3d3,stroke:#000,stroke-width:2px;
+                style B fill:#008080,stroke:#000,stroke-width:2px;
+                style C fill:#b8860b,stroke:#000,stroke-width:2px;
+                style D fill:#b22222,stroke:#000,stroke-width:2px;
+
+                linkStyle 0,1,2,3,4 stroke:#777,stroke-width:3px,color:#fff,font-weight:bold;
+
+            </div>
+
+            <p>or</p>
+
+            <div class="mermaid">
+                graph TD;
+    
+                %% 🎯 User Actions
+                subgraph "🎯 User Actions" 
+                    A["📄 Create/Edit File"]:::action 
+                    B["➕ Add File"]:::action
+                    C["✏️ Modify File"]:::action
+                end
+
+                %% ⚡ Git States
+                subgraph "⚡ Git States"
+                    X["🟥 Untracked"]:::state_untracked
+                    Y["🔵 Unmodified"]:::state_unmodified
+                    Z["🟠 Modified"]:::state_modified
+                    W["🟢 Staged"]:::state_staged
+                end
+
+                %% 🔀 Transitions
+                A --> X
+                B -->|"⚡ `git add`"| Y:::cmd
+                C -->|"🟣 Edit"| Z:::cmd
+                Z -->|"🔥 `git add`"| W:::cmd
+                W -->|"✅ `git commit`"| Y:::cmd
+
+                %% 🎨 Styling for Dark Mode
+                classDef action fill:#FFC107,stroke:#FFF,stroke-width:2px,color:#000,font-size:14px,font-weight:bold;
+                classDef state_untracked fill:#F44336,stroke:#FFF,stroke-width:2px,color:#FFF,font-size:14px,font-weight:bold;
+                classDef state_unmodified fill:#2196F3,stroke:#FFF,stroke-width:2px,color:#FFF,font-size:14px,font-weight:bold;
+                classDef state_modified fill:#FF9800,stroke:#FFF,stroke-width:2px,color:#FFF,font-size:14px,font-weight:bold;
+                classDef state_staged fill:#4CAF50,stroke:#FFF,stroke-width:2px,color:#FFF,font-size:14px,font-weight:bold;
+                classDef cmd fill:#333,stroke:#FFF,stroke-width:2px,color:#FFF,font-size:14px,font-weight:bold, font-family:monospace;
+
+                linkStyle 0,1,2,3,4 stroke:#F44336,stroke-width:3px,color:#FFF,font-weight:bold;
+            </div>
+
+
+
+        </section>
+
+        <!-- 🔹 Next Chapter Button -->
+        <div class="next-chapter">
+            <a href="/VersionControlSystem/checking_status.html" class="button">Next Chapter: Checking File Status</a>
+        </div>
+
+    </main>
+
+</body>
+
+</html>

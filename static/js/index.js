@@ -46,3 +46,8 @@ if (url.includes("vcs_main.html")) {
 } else if (url.includes("final_chapter.html")) {
     trackReadingProgress(5);
 }
+
+
+function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('open');
+}

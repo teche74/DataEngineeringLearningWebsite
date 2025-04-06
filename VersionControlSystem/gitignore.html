@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 5: Ignoring Files in Git</title>
+    <link rel="stylesheet" href="/static/css/gitignore.css" />
+</head>
+
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <div class="sidebar">
+        <h2>📜 Chapters</h2>
+        <ul>
+            <li><a href="/VersionControlSystem/vcs_main.html">Why Git Exists?</a></li>
+            <li><a href="/VersionControlSystem/first_time_config.html">Chapter 1: Git Config</a></li>
+            <li><a href="/VersionControlSystem/getrepoways.html">Chapter 2: Ways to Get a Repo</a></li>
+            <li><a href="/VersionControlSystem/recordchanges.html">Chapter 3: Record Changes</a></li>
+            <li><a href="/VersionControlSystem/checking_status.html">Chapter 4: Checking File Status</a></li>
+            <li><a href="/VersionControlSystem/gitignore.html" class="active">Chapter 5: Ignoring Files</a></li>
+            <li><a href="/VersionControlSystem/StagedorUnstaged.html">Chapter 6: Staged vs Unstaged</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 7: Committing , Skip Stagging , Removing Files and Moving Files</a></li>
+            <li><a href="#">Chapter 8: Skip Staging</a></li>
+            <li><a href="#">Chapter 9: Remove Files</a></li>
+            <li><a href="#">Chapter 10: Move Files</a></li>
+            <li><a href="#">Chapter 11: Commit History</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1 class="title">Chapter 5: Ignoring Files in Git</h1>
+
+        <div class="intro">
+
+            <p>Sometimes you have files in your project that Git should not track. These might be:</p>
+            <ul>
+                <li>🔐 Secret files like <code>.env</code></li>
+                <li>📁 Output/build folders like <code>dist/</code> or <code>temp/</code></li>
+                <li>🧪 Logs or debug files like <code>debug.log</code></li>
+            </ul>
+
+            <p class="info"># You can tell Git to ignore them using a file called <code>.gitignore</code></p>
+
+            <div class="patterns-desc">
+                <pre><code># This is a comment
+.env           # Ignore env file
+*.log          # Ignore ALL log files
+temp/          # Ignore a folder
+!keep.log      # But do not ignore this specific log file
+</code></pre>
+            </div>
+
+            <p class="pattern-examples"># Let’s break it down with real examples 👇</p>
+
+            <div class="examples">
+                <h3>📝 .gitignore Rules Explained Simply:</h3>
+                <ul>
+                    <li><code>#</code> ➜ Comment line. Git will ignore this line completely.</li>
+                    <li>
+                        <code>*.log</code> ➜ Match all files that end with `.log`.
+                        <br><span class="explain">🧠 Example: <code>debug.log</code>, <code>error.log</code></span>
+                    </li>
+                    <li>
+                        <code>.env</code> ➜ Ignore a specific file named `.env`.
+                        <br><span class="explain">🧠 Often used for secrets and API keys.</span>
+                    </li>
+                    <li>
+                        <code>temp/</code> ➜ Ignore everything inside the <code>temp</code> folder.
+                        <br><span class="explain">🧠 Example: <code>temp/file.txt</code></span>
+                    </li>
+                    <li>
+                        <code>!keep.log</code> ➜ Do <strong>not</strong> ignore <code>keep.log</code> even if
+                        matched earlier.
+                        <br><span class="explain">🧠 Useful to whitelist specific files.</span>
+                    </li>
+                    <li>
+                        <code>/notes.txt</code> ➜ Ignore <code>notes.txt</code> only if it's in the root folder.
+                        <br><span class="explain">🧠 Won’t ignore <code>src/notes.txt</code>.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <p class="practise_game"># Let's practice:</p>
+
+            <div class="interactive-section">
+                <textarea id="patternInput" placeholder="Enter .gitignore patterns, separated by comma or new lines..." oninput="updateFileList()"></textarea>
+                <div id="fileList" class="file-list"></div>
+                <div id="feedbackSection"></div>
+            </div>
+
+
+            <p class="help"># Bonus Tip:</p>
+            <p>If you accidentally committed a file before ignoring it, use this:</p>
+            <div class="code-block">
+                <pre><code>git rm --cached filename</code></pre>
+            </div>
+            <p>Then add the file to `.gitignore` so it won't be tracked next time.</p>
+        </div>
+    </div>
+    </div>
+
+    <script src="/static/js/gitignore.js"></script>
+</body>
+
+</html>

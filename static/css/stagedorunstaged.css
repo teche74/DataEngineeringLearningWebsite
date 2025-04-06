@@ -1,0 +1,360 @@
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: -280px;
+    /* Hidden by default */
+    top: 0;
+    background-color: #111;
+    padding: 20px;
+    border-right: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: monospace;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+}
+
+/* Sidebar Hover Effect */
+.sidebar:hover {
+    left: 0;
+    /* Slide in when hovered */
+}
+
+/* Sidebar Links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #00ff00;
+    font-size: 1.1em;
+    display: block;
+    padding: 8px;
+    transition: background 0.3s, transform 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    border-left: 3px solid #00ff00;
+    transform: translateX(5px);
+}
+
+/* Adjust Content When Sidebar is Open */
+.sidebar:hover~.content {
+    margin-left: 280px;
+}
+
+
+/* Terminal Cursor Effect */
+.sidebar ul li a::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+.sidebar-toggle {
+    display: none;
+}
+
+
+/* ================================== */
+/* 📱 Responsive Design Adjustments 📱 */
+/* ================================== */
+
+/* 📌 Tablets (Medium Screens) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+        left: 0;
+        /* Sidebar always visible */
+    }
+
+    .content {
+        margin-left: 220px;
+    }
+}
+
+/* 📌 Mobile (Small Screens) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0;
+        top: 0;
+        display: none;
+        /* Hidden by default */
+        text-align: center;
+        border-right: none;
+        border-bottom: 2px solid #00ff00;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        margin: 10px;
+    }
+
+    .sidebar ul li a {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    /* Sidebar Toggle Button */
+    .sidebar-toggle {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #00ff00;
+        color: #121212;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .sidebar.open {
+        display: block;
+        /* Show sidebar when toggled */
+    }
+
+    .content {
+        margin-left: 0;
+        padding-top: 80px;
+        /* Adjust for top menu */
+    }
+}
+
+/* For Webkit Browsers (Chrome, Edge, Safari) */
+.sidebar::-webkit-scrollbar {
+    width: 10px;
+    /* Slim scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #121212;
+    /* Dark track to blend with background */
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    /* Neon green scrollbar */
+    border-radius: 10px;
+    border: 2px solid #121212;
+    /* Creates an outline effect */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #44ff44;
+    /* Slightly brighter green on hover */
+}
+
+/* For Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #00ff00 #121212;
+}
+
+
+/* /main */
+
+.title {
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #00ff00;
+    animation: crt 1s infinite alternate;
+    text-align: center;
+    font-size: 2em;
+    margin: 40px auto 20px;
+    width: fit-content;
+}
+
+
+.title:hover {
+    animation: glitch 0.5s infinite alternate;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: -3px 0 #ff0000, 3px 0 #00ff00;
+    }
+
+    50% {
+        text-shadow: 3px 0 #ff0000, -3px 0 #00ff00;
+    }
+
+    100% {
+        text-shadow: -3px 0 #ff0000, 3px 0 #00ff00;
+    }
+}
+
+
+.content {
+    margin-left: 0;
+    padding: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #121212;
+    color: #00ff00;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* 📚 Explanation Section */
+.interactive-section button {
+    background: #00ff00;
+    color: #121212;
+    border: none;
+    padding: 10px 16px;
+    font-family: monospace;
+    margin: 8px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.interactive-section button:hover {
+    background: #44ff44;
+}
+
+.explanation {
+    display: none;
+    padding: 12px;
+    background-color: #1e1e1e;
+    margin: 8px 0 16px;
+    border-left: 4px solid #00ff00;
+    font-size: 0.95em;
+}
+
+/* 🧪 Git Diff Visualizer */
+.viz-section {
+    margin-top: 30px;
+    background-color: #1a1a1a;
+    padding: 20px;
+    border: 2px solid #00ff00;
+    border-radius: 8px;
+}
+
+.file-list label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+.diff-output {
+    margin-top: 16px;
+    padding: 10px;
+    background-color: #0f0f0f;
+    border: 1px dashed #00ff00;
+    min-height: 60px;
+    white-space: pre-wrap;
+}
+
+
+.workflow-diagram {
+    background: #1e1e1e;
+    color: #00ff00;
+    font-family: monospace;
+    padding: 1em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+.quiz {
+    background-color: #040404;
+    border: 2px solid #0ee12a;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 30px;
+    font-family: 'Georgia', serif;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quiz h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #14f22e;
+}
+
+.quiz p {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #df9d2b;
+}
+
+.quiz button {
+    margin-right: 10px;
+    margin-top: 5px;
+    padding: 10px 18px;
+    font-size: 1rem;
+    background-color: #ffe6b3;
+    border: 2px solid #d4a75f;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.quiz button:hover {
+    background-color: #ffdd99;
+    transform: scale(1.05);
+}
+
+#quizResult {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.navigation {
+    background-color: #1e1e1e;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    padding: 12px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #00ff9f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    box-shadow: inset 0 1px 0 #333, inset 0 -1px 0 #333;
+}
+
+.navigation a {
+    color: #20f52e;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.navigation a:hover {
+    color: #20f52e;
+    text-shadow: 0 0 5px #20f52e;
+}
+
+.navigation::before {
+    content: ">> ";
+    color: #20f52e;
+    animation: blinkCursor 1s step-end infinite;
+}
+
+@keyframes blinkCursor {
+    50% {
+        opacity: 0;
+    }
+}

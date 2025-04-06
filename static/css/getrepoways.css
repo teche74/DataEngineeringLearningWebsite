@@ -1,0 +1,405 @@
+
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: -280px;
+    /* Hidden by default */
+    top: 0;
+    background-color: #111;
+    padding: 20px;
+    border-right: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: monospace;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+}
+
+.sidebar-toggle {
+    display: none;
+}
+
+/* Sidebar Hover Effect */
+.sidebar:hover {
+    left: 0;
+    /* Slide in when hovered */
+}
+
+/* Sidebar Links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #00ff00;
+    font-size: 1.1em;
+    display: block;
+    padding: 8px;
+    transition: background 0.3s, transform 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    border-left: 3px solid #00ff00;
+    transform: translateX(5px);
+}
+
+/* Adjust Content When Sidebar is Open */
+.sidebar:hover~.content {
+    margin-left: 280px;
+}
+
+
+/* Terminal Cursor Effect */
+.sidebar ul li a::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+
+/* ================================== */
+/* 📱 Responsive Design Adjustments 📱 */
+/* ================================== */
+
+/* 📌 Tablets (Medium Screens) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+        left: 0;
+        /* Sidebar always visible */
+    }
+
+    .content {
+        margin-left: 220px;
+    }
+}
+
+/* 📌 Mobile (Small Screens) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0;
+        top: 0;
+        display: none;
+        /* Hidden by default */
+        text-align: center;
+        border-right: none;
+        border-bottom: 2px solid #00ff00;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        margin: 10px;
+    }
+
+    .sidebar ul li a {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    /* Sidebar Toggle Button */
+    .sidebar-toggle {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #00ff00;
+        color: #121212;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .sidebar.open {
+        display: block;
+        /* Show sidebar when toggled */
+    }
+
+    .content {
+        margin-left: 0;
+        padding-top: 80px;
+        /* Adjust for top menu */
+    }
+}
+
+/* For Webkit Browsers (Chrome, Edge, Safari) */
+.sidebar::-webkit-scrollbar {
+    width: 10px; /* Slim scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #121212; /* Dark track to blend with background */
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #00ff00; /* Neon green scrollbar */
+    border-radius: 10px;
+    border: 2px solid #121212; /* Creates an outline effect */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #44ff44; /* Slightly brighter green on hover */
+}
+
+/* For Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #00ff00 #121212;
+}
+
+
+/* 🌌 Global Styles */
+html, body {
+    margin: 0;
+    height: 100%;
+    scroll-behavior: smooth;
+    background-color: #121212;
+    color: #00ff00;
+    font-family: 'Press Start 2P', monospace;
+    text-align: center;
+    padding-top: 20px;
+}
+
+/* 🔖 Typography */
+h1, h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 255, 0, 0.8);
+}
+
+p {
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+ul li {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* 🌟 Section & Container */
+.container {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    width: 100%;
+}
+
+section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* 🧠 Title */
+.title {
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #00ff00;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    animation: crt 1s infinite alternate;
+}
+
+.title:hover {
+    animation: glitch 0.5s infinite alternate;
+}
+
+/* ✨ Animations */
+@keyframes crt {
+    0%, 100% { text-shadow: 0 0 5px #00ff00; }
+    50% { text-shadow: 0 0 10px #00ff00; }
+}
+
+@keyframes glitch {
+    0% { text-shadow: -3px 0 #ff0000, 3px 0 #00ff00; }
+    50% { text-shadow: 3px 0 #ff0000, -3px 0 #00ff00; }
+    100% { text-shadow: -3px 0 #ff0000, 3px 0 #00ff00; }
+}
+
+/* 📁 File System */
+.filesystem {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding: 10px;
+    border: 2px solid #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 8px;
+}
+
+.folder {
+    padding: 10px;
+    border: 2px solid #00ff00;
+    background: rgba(0, 255, 0, 0.2);
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+/* 🖥️ Terminal */
+.terminal {
+    background: #000;
+    color: #00ff00;
+    width: 80%;
+    max-width: 600px;
+    padding: 15px;
+    margin: 20px auto;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.output {
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #222;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+}
+
+/* 💬 Input Line */
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: #00ff00;
+    margin-right: 5px;
+}
+
+input[type="text"] {
+    background: none;
+    border: none;
+    color: #00ff00;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+}
+
+/* 💡 Buttons */
+button {
+    background: black;
+    color: #00ff00;
+    font-family: monospace;
+    font-size: 18px;
+    padding: 15px 30px;
+    border: 2px solid #00ff00;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 5px;
+}
+
+button:hover {
+    background: #00ff00;
+    color: black;
+}
+
+/* 🎨 Slide5 Overrides */
+.slide5 {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.slide5 button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.slide5 button:hover {
+    background-color: #0056b3;
+}
+
+/* 🧭 Mermaid Diagram Styling */
+.mermaid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto;
+    padding: 40px;
+    background: #121212;
+}
+
+/* Make the actual diagram SVG larger */
+.mermaid svg {
+    width: 120% !important;
+    height: auto !important;
+    transform: scale(1.3); /* Scale up the diagram */
+    transform-origin: top center;
+}
+
+/* Optional: make node text larger */
+.mermaid .node text,
+.mermaid .label {
+    font-size: 18px !important;
+}
+
+
+/* 🔒 Hidden */
+.hidden {
+    display: none;
+}
+
+/* 📱 Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .git-wizard {
+        right: 10px;
+        bottom: 10px;
+        width: 220px;
+    }
+
+    .terminal {
+        width: 95%;
+    }
+
+    .filesystem {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 5: Ignoring Files in Git</title>
+    <link rel="stylesheet" href="/static/css/committing.css" />
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <div class="sidebar">
+        <h2>📜 Chapters</h2>
+        <ul>
+            <li><a href="/VersionControlSystem/vcs_main.html">Why Git Exists?</a></li>
+            <li><a href="/VersionControlSystem/first_time_config.html">Chapter 1: Git Config</a></li>
+            <li><a href="/VersionControlSystem/getrepoways.html">Chapter 2: Ways to Get a Repo</a></li>
+            <li><a href="/VersionControlSystem/recordchanges.html">Chapter 3: Record Changes</a></li>
+            <li><a href="/VersionControlSystem/checking_status.html">Chapter 4: Checking File Status</a></li>
+            <li><a href="/VersionControlSystem/gitignore.html" class="active">Chapter 5: Ignoring Files</a></li>
+            <li><a href="/VersionControlSystem/StagedorUnstaged.html">Chapter 6: Staged vs Unstaged</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 7: Committing , Skip Stagging , Removing Files
+                    and Moving Files</a></li>
+            <li><a href="#">Chapter 8: Skip Staging</a></li>
+            <li><a href="#">Chapter 9: Remove Files</a></li>
+            <li><a href="#">Chapter 10: Move Files</a></li>
+            <li><a href="#">Chapter 11: Commit History</a></li>
+        </ul>
+    </div>
+
+    <main class="content">
+        <h1 class="title">CHAPTER 6: Committing, Skipping Staging, Removing & Moving Files</h1>
+
+        <!-- COMMIT SECTION -->
+        <section class="commit-section">
+            <h2>Commit the Changes We've Made</h2>
+            <p>
+                First, we stage changes using:
+                <code class="code">git add &lt;filename&gt;</code> or
+                <code class="code">git add .</code>(for all changes).
+            </p>
+            <p>
+                Then we commit them with:
+                <code class="code">git commit -m "your commit message"</code>
+            </p>
+
+            <div class="mermaid">
+                graph LR
+                A[Working Directory] --> B[Staging Area]
+                B --> C[Repository]
+                A -->|git add| B
+                B -->|git commit| C
+            </div>
+
+            <div class="git-animation">
+                <div class="stage-area">
+                    <div class="file" id="file1">file1.txt</div>
+                    <div class="file" id="file2">file2.js</div>
+                </div>
+                <button class="commit-btn" onclick="commitFiles()">git commit</button>
+                <div class="repository">
+                    <div class="commit-log" id="commit-log">
+                        <p class="commit-title">Commits:</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKIP STAGING -->
+        <section class="skip-staging-section">
+            <h2>What If I Skip Staging? 🤨</h2>
+            <p>
+                You can use <code class="code">git commit -am "message"</code> to skip staging.
+            </p>
+            <ul>
+                <li>✅ Works for modified files already tracked.</li>
+                <li>❌ New (untracked) files are ignored unless explicitly added.</li>
+            </ul>
+        </section>
+
+
+        <section class="removing-files">
+            <h2>🗑️ Removing Files in Git</h2>
+
+            <p>Sometimes, you need to remove files from both:</p>
+            <ul>
+                <li>🗂️ <strong>Working Directory</strong> (your project folder)</li>
+                <li>📦 <strong>Staging Area</strong> (what's going into your next commit)</li>
+            </ul>
+
+            <p>Use this command:</p>
+            <div class="code">git rm &lt;filename&gt;</div>
+
+            <h4>🎯 Example:</h4>
+            <div class="code">git rm old_data.csv</div>
+
+            <p>This command:</p>
+            <ol>
+                <li>❌ Deletes <code>old_data.csv</code> from your folder</li>
+                <li>📋 Stages its removal so the deletion is included in your next commit</li>
+            </ol>
+
+            <h4>🤔 What if I delete the file manually (outside Git)?</h4>
+            <p>Git will notice it’s missing and show this in <code>git status</code>:</p>
+            <div class="code">deleted: old_data.csv</div>
+            <p>But it won’t be staged until you run:</p>
+            <div class="code">git add -u</div>
+
+            <h4>🚫 Want to keep the file but stop tracking it?</h4>
+            <p>Use this command to untrack the file without deleting it from disk:</p>
+            <div class="code">git rm --cached &lt;filename&gt;</div>
+            <p>This is super useful for removing sensitive or unnecessary files like logs, build folders, or API keys.
+            </p>
+
+            <h4>💡 Tip:</h4>
+            <p>Once removed, add that file to <code>.gitignore</code> to prevent future accidental tracking.</p>
+        </section>
+
+        <section class="moving_files">
+            <h2>🚚 Moving or Renaming Files in Git</h2>
+
+            <p>Renaming or moving a file? Git has a special command:</p>
+            <div class="code">git mv &lt;old_filename&gt; &lt;new_filename&gt;</div>
+
+            <h4>📦 Example:</h4>
+            <div class="code">git mv notes.txt docs/meeting-notes.md</div>
+
+            <p>This command:</p>
+            <ol>
+                <li>🔁 Renames or moves the file in your folder</li>
+                <li>📝 Automatically stages the change for the next commit</li>
+            </ol>
+
+            <h4>🧠 Why use <code>git mv</code> instead of renaming manually?</h4>
+            <p>If you rename manually (via File Explorer or command line), Git treats it like:</p>
+            <ul>
+                <li>❌ One file deleted</li>
+                <li>➕ One new file added</li>
+            </ul>
+            <p>This can clutter your history with unnecessary deletions and additions.</p>
+
+            <h4>🕵️‍♂️ Fun Fact:</h4>
+            <p>Git uses smart algorithms to detect renames—even if you move manually! If content remains mostly the
+                same, Git will show it as a rename in <code>git diff</code> or <code>git status</code>.</p>
+
+            <p>But using <code>git mv</code> makes your intent clear and keeps your commits cleaner.</p>
+        </section>
+
+
+        <section class="quiz-section">
+            <h2>🧠 Quick Quiz: Test Your Understanding!</h2>
+            <p>What command will commit only modified (already tracked) files without staging first?</p>
+            <form id="quizForm">
+                <label><input type="radio" name="q1" value="a"> git commit</label><br>
+                <label><input type="radio" name="q1" value="b"> git add .</label><br>
+                <label><input type="radio" name="q1" value="c"> git commit -am "msg"</label><br>
+                <label><input type="radio" name="q1" value="d"> git commit -m "msg"</label><br><br>
+                <button type="button" onclick="checkQuiz()">Submit Answer</button>
+                <p id="quizResult"></p>
+            </form>
+        </section>
+
+
+    </main>
+
+
+
+    <script src="/static/js/commmitting.js"></script>
+</body>
+
+</html>

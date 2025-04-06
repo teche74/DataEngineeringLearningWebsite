@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Repository Learning</title>
+    <link rel="stylesheet" href="/static/css/getrepoways.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.4/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            themeVariables: {
+                fontSize: "22px", /* Increase text size */
+                nodeBorder: "3px solid #00ff00", /* Thicker borders */
+                primaryColor: "#ffcc00", /* Highlight nodes */
+                edgeLabelBackground: "#222" /* Improve edge visibility */
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <div class="sidebar">
+        <h2>📜 Chapters</h2>
+        <ul>
+            <li><a href="/VersionControlSystem/vcs_main.html">Why Git Exists?</a></li>
+            <li><a href="/VersionControlSystem/first_time_config.html">Chapter 1: Git Config</a></li>
+            <li><a href="/VersionControlSystem/getrepoways.html">Chapter 2: Ways to Get a Repo</a></li>
+            <li><a href="/VersionControlSystem/recordchanges.html">Chapter 3: Record Changes</a></li>
+            <li><a href="/VersionControlSystem/checking_status.html" class="active">Chapter 4: Checking File Status</a>
+            </li>
+            <li><a href="/VersionControlSystem/gitignore.html">Chapter 5: Ignoring Files</a></li>
+            <li><a href="/VersionControlSystem/StagedorUnstaged.html">Chapter 6: Staged vs Unstaged</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 7: Committing , Skip Stagging , Removing Files and Moving Files</a></li>
+            <li><a href="#">Chapter 8: Skip Staging</a></li>
+            <li><a href="#">Chapter 9: Remove Files</a></li>
+            <li><a href="#">Chapter 10: Move Files</a></li>
+            <li><a href="#">Chapter 11: Commit History</a></li>
+        </ul>
+    </div>
+        
+    <h1 class="title">Chapter 2: How to Get a Git Repository</h1>
+    <div class="container">
+        <div class="slides">
+            <!-- Slide 1 -->
+            <section class="slide1">
+                <p>Before using Git, you need a repository. There are two ways to get one:</p>
+                <div class="mermaid">
+                    graph TD;
+                    A["Want to Start with Git?"] -->|Initialize| B["git init 🏗️ (Create Local Repo)"];
+                    A -->|Clone| C["git clone 🔗 (Copy Remote Repo)"];
+
+                    style A fill:#ffcc00,stroke:#000,stroke-width:2px;
+                    style B fill:#00ccff,stroke:#000,stroke-width:2px;
+                    style C fill:#ff6600,stroke:#000,stroke-width:2px;
+                </div>
+            </section>
+
+            <!-- Slide 2 -->
+            <section class="slide2">
+                <h2>1️⃣ Initializing a Local Repository (`git init`)</h2>
+                <p>The `git init` command creates an empty Git repository in your project directory.</p>
+                <div class="mermaid">
+                    graph TD;
+                    Start["🚀 Initialize Git"] -->|Run| GitInit["⚡ git init"];
+                    GitInit --> DirCreated["📂 .git Directory Created"];
+                    DirCreated --> Metadata["🗂️ Stores Metadata (Commits, Branches, etc.)"];
+                    Metadata --> Tracking["👀 Git Starts Tracking Changes ✅"];
+
+                    style Start fill:#ffcc00,stroke:#000,stroke-width:2px;
+                    style GitInit fill:#00ccff,stroke:#000,stroke-width:2px;
+                    style DirCreated fill:#ff6600,stroke:#000,stroke-width:2px;
+                    style Metadata fill:#66cc66,stroke:#000,stroke-width:2px;
+                    style Tracking fill:#99ff99,stroke:#000,stroke-width:2px;
+                </div>
+
+            </section>
+
+            <!-- Slide 3 -->
+            <section class="slide3">
+                <h2>2️⃣ Cloning a Repository (`git clone`)</h2>
+                <p>The `git clone` command copies an existing repository from a remote source.</p>
+                <div class="mermaid">
+                    graph TD;
+                    X["Run git clone"] --> Y["🗂️ Copies files & .git metadata"];
+                    Y --> Z["Sets up remote connection 🔗"];
+
+                    style X fill:#ffcc00,stroke:#000,stroke-width:2px;
+                    style Y fill:#66ff99,stroke:#000,stroke-width:2px;
+                    style Z fill:#ff6666,stroke:#000,stroke-width:2px;
+                </div>
+            </section>
+
+            <section id="gitFolderIntro" class="slide4">
+                <h2>3️⃣ Inside the `.git` Folder</h2>
+                <p>Git creates a `.git` folder that contains all repository data, including:</p>
+
+                <ul>
+                    <li><strong>HEAD:</strong> Points to the current branch.</li>
+                    <li><strong>objects/:</strong> Stores commits, blobs, trees.</li>
+                    <li><strong>refs/:</strong> Contains branch references.</li>
+                    <li><strong>config:</strong> Repository settings.</li>
+                </ul>
+
+                <div class="mermaid">
+                    graph TD;
+                    A[".git folder"] --> B["HEAD"];
+                    A --> C["objects/"];
+                    A --> D["refs/"];
+                    A --> E["config"];
+
+                    style A fill:#ffcc00,stroke:#000,stroke-width:2px;
+                    style B fill:#00ccff,stroke:#000,stroke-width:2px;
+                    style C fill:#ff6600,stroke:#000,stroke-width:2px;
+                    style D fill:#66cc66,stroke:#000,stroke-width:2px;
+                    style E fill:#ff9966,stroke:#000,stroke-width:2px;
+                </div>
+
+            </section>
+
+
+            <section class="slide5">
+                <h2>🔍 Learn How to Get a Git Repository</h2>
+
+                <!-- Start Learning Button -->
+                <button onclick="startLearning()">▶️ Start Learning</button>
+                <div id="learningContainer">
+                    <div class="terminal">
+                        <div class="output" id="output"></div>
+                        <div class="input-line">
+                            <span class="prompt">$</span>
+                            <input type="text" id="command" autofocus onkeypress="handleCommand(event)" placeholder="Enter command here...">
+                        </div>
+                    </div>
+
+                    <div class="visualization">
+                        <h3>📂 File System</h3>
+                        <div class="filesystem">
+                            <div class="folder" id="localFolder">📁 MyProject</div>
+                            <div class="folder hidden" id="gitFolder">📂 .git (Git Metadata)</div>
+                            <div class="folder hidden" id="clonedRepo">📁 ClonedRepo</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4 -->
+            <section class="slide6">
+                <h2>✅ Congratulations!</h2>
+                <p>You now understand how to get a Git repository.</p>
+                <button onclick="restartSlides()">🔄 Restart</button>
+                <button onclick="window.location.href='/VersionControlSystem/recordchanges.html'">Next Chapter</button>
+            </section>
+        </div>
+    </div>
+    <script src="/static/js/getrepoways.js"></script>
+</body>
+
+</html>

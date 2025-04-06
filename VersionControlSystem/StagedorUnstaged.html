@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chapter 5: Ignoring Files in Git</title>
+    <link rel="stylesheet" href="/static/css/stagedorunstaged.css" />
+</head>
+
+<body>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <div class="sidebar">
+        <h2>📜 Chapters</h2>
+        <ul>
+            <li><a href="/VersionControlSystem/vcs_main.html">Why Git Exists?</a></li>
+            <li><a href="/VersionControlSystem/first_time_config.html">Chapter 1: Git Config</a></li>
+            <li><a href="/VersionControlSystem/getrepoways.html">Chapter 2: Ways to Get a Repo</a></li>
+            <li><a href="/VersionControlSystem/recordchanges.html">Chapter 3: Record Changes</a></li>
+            <li><a href="/VersionControlSystem/checking_status.html">Chapter 4: Checking File Status</a></li>
+            <li><a href="/VersionControlSystem/gitignore.html" class="active">Chapter 5: Ignoring Files</a></li>
+            <li><a href="/VersionControlSystem/StagedorUnstaged.html">Chapter 6: Staged vs Unstaged</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 7: Committing , Skip Stagging , Removing Files and Moving Files</a></li>
+            <li><a href="#">Chapter 8: Skip Staging</a></li>
+            <li><a href="#">Chapter 9: Remove Files</a></li>
+            <li><a href="#">Chapter 10: Move Files</a></li>
+            <li><a href="#">Chapter 11: Commit History</a></li>
+        </ul>
+    </div>
+
+    <main class="content">
+        <h1 class="title">CHAPTER 6 : Review Staged or Unstaged File</h1>
+    
+        <p>Since we already know that <code>git status</code> helps us get info about operations, it can be a bit too descriptive.</p>
+        <p>If you want a more concise view of what changes <strong>you actually made</strong>, use:</p>
+    
+        <div class="interactive-section">
+            <button onclick="toggleExplanation('unstaged')">🔍 What is <code>git diff</code>?</button>
+            <div class="explanation" id="unstaged">
+                <p><code>git diff</code> shows changes made to files that are not staged yet. It highlights lines added (green) and removed (red).</p>
+            </div>
+    
+            <button onclick="toggleExplanation('staged')">🔍 What is <code>git diff --staged</code>?</button>
+            <div class="explanation" id="staged">
+                <p><code>git diff --staged</code> shows differences between the last commit and staged changes, which will be part of the next commit.</p>
+            </div>
+        </div>
+    
+        <hr>
+    
+        <h2>📦 Git Workflow Visual</h2>
+        <p>Understand where each command fits in the Git staging process:</p>
+        <div class="workflow-diagram">
+            <pre>
+    Working Directory ──[git add]──▶ Staging Area ──[git commit]──▶ Repository
+         ▲                        ▲
+         │                        │
+     [git diff]          [git diff --staged]
+            </pre>
+        </div>
+    
+        <hr>
+    
+        <h2>📚 Real-Life Example</h2>
+        <p>Imagine you're working on <code>main.css</code> and <code>app.js</code>:</p>
+        <pre><code>
+    # Make changes to both files
+    echo "body { color: red; }" >> main.css
+    echo "console.log('Update');" >> app.js
+    
+    # Stage main.css only
+    git add main.css
+    
+    # Run diffs
+    git diff           # See changes in app.js (unstaged)
+    git diff --staged  # See staged changes in main.css
+        </code></pre>
+    
+        <button onclick="copyCommands()">📋 Copy Example Commands</button>
+        <p id="copyStatus"></p>
+    
+        <hr>
+    
+        <div class="viz-section">
+            <h2>🧪 Git Diff Visualizer</h2>
+            <p>Select files and see what <code>git diff</code> and <code>git diff --staged</code> would show:</p>
+            <div class="file-list">
+                <label><input type="checkbox" class="unstaged" onchange="updateDiff()"> file1.txt (unstaged changes)</label><br>
+                <label><input type="checkbox" class="staged" onchange="updateDiff()"> file2.py (staged changes)</label><br>
+                <label><input type="checkbox" class="unstaged" onchange="updateDiff()"> app.js (unstaged changes)</label><br>
+                <label><input type="checkbox" class="staged" onchange="updateDiff()"> main.css (staged changes)</label><br>
+            </div>
+            <div class="diff-output" id="diffOutput">No files selected yet.</div>
+        </div>
+    
+        <hr>
+    
+        <div class="quiz">
+            <h2>🧠 Quick Quiz</h2>
+            <p>Q: You staged <code>file1.txt</code> but not <code>file2.py</code>. Which command shows changes in <code>file2.py</code>?</p>
+            <button onclick="checkAnswer('a')">A) git diff</button>
+            <button onclick="checkAnswer('b')">B) git diff --staged</button>
+            <p id="quizResult"></p>
+        </div>
+    
+        <hr>
+    
+        <div class="navigation">
+            <a href="/VersionControlSystem/gitignore.html">← Chapter 5: Ignoring Files</a> |
+            <a href="/VersionControlSystem/Committing.html">Chapter 7: Committing →</a>
+        </div>
+    </main>
+    
+    
+    <script src="/static/js/stagedorunstaged.js"></script>
+</body>
+
+</html>

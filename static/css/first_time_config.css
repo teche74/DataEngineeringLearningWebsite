@@ -10,9 +10,31 @@ body {
     text-align: center;
 }
 
+@keyframes crt {
+    0% { text-shadow: 0 0 5px #00ff00; }
+    50% { text-shadow: 0 0 10px #00ff00; }
+    100% { text-shadow: 0 0 5px #00ff00; }
+}
+
 .title {
-    font-size: 2em;
-    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #00ff00;
+    animation: crt 1s infinite alternate;
+}
+
+
+.title:hover {
+    animation: glitch 0.5s infinite alternate;
+}
+
+@keyframes glitch {
+    0% { text-shadow: -3px 0 #ff0000, 3px 0 #00ff00; }
+    50% { text-shadow: 3px 0 #ff0000, -3px 0 #00ff00; }
+    100% { text-shadow: -3px 0 #ff0000, 3px 0 #00ff00; }
+}
+
+.sidebar-toggle {
+    display: none;
 }
 
 .terminal-box {
@@ -21,17 +43,24 @@ body {
     border-radius: 5px;
     font-family: monospace;
     font-size: 1.2em;
-    width: 800px;  /* Fixed width */
+    width: 800px;
+    /* Fixed width */
     text-align: left;
     position: relative;
     border: 2px solid #00ff00;
     margin-top: 20px;
-    white-space: pre-wrap;  /* Ensures text wraps onto new lines */
-    word-wrap: break-word;  /* Ensures long words break and wrap to the next line */
-    overflow-wrap: break-word;  /* Same as word-wrap, for better compatibility */
-    overflow: visible;  /* Allow content to grow vertically without clipping */
-    min-height: 100px;  /* Set a minimum height */
-    box-sizing: border-box;  /* Include padding in width */
+    white-space: pre-wrap;
+    /* Ensures text wraps onto new lines */
+    word-wrap: break-word;
+    /* Ensures long words break and wrap to the next line */
+    overflow-wrap: break-word;
+    /* Same as word-wrap, for better compatibility */
+    overflow: visible;
+    /* Allow content to grow vertically without clipping */
+    min-height: 100px;
+    /* Set a minimum height */
+    box-sizing: border-box;
+    /* Include padding in width */
 }
 
 .terminal-cursor {
@@ -82,10 +111,14 @@ body {
 }
 
 .ascii-art {
-    white-space: pre;
-    font-size: 12px;
-    color: #00ff00;
-    margin-bottom: 10px;
+    text-align: center;
+    font-size: 14px;
+    filter: contrast(150%) brightness(120%);
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.ascii-art:hover {
+    animation: glitch 0.5s infinite alternate;
 }
 
 button {
@@ -119,6 +152,19 @@ button:hover {
     display: block !important;
 }
 
+#explanation3 {
+    display: block !important;
+}
+
+#explanation4 {
+    display: block !important;
+}
+
+#explanation5 {
+    display: block !important;
+}
+
+
 .command-section {
     margin-bottom: 40px;
 }
@@ -129,7 +175,8 @@ button:hover {
     width: 260px;
     height: 100vh;
     position: fixed;
-    left: -280px; /* Hidden by default */
+    left: -280px;
+    /* Hidden by default */
     top: 0;
     background-color: #111;
     padding: 20px;
@@ -142,7 +189,8 @@ button:hover {
 
 /* Sidebar Hover Effect */
 .sidebar:hover {
-    left: 0; /* Slide in when hovered */
+    left: 0;
+    /* Slide in when hovered */
 }
 
 /* Sidebar Links */
@@ -172,7 +220,7 @@ button:hover {
 }
 
 /* Adjust Content When Sidebar is Open */
-.sidebar:hover ~ .content {
+.sidebar:hover~.content {
     margin-left: 280px;
 }
 
@@ -207,7 +255,8 @@ button:hover {
 @media (max-width: 1024px) {
     .sidebar {
         width: 200px;
-        left: 0; /* Sidebar always visible */
+        left: 0;
+        /* Sidebar always visible */
     }
 
     .content {
@@ -223,7 +272,8 @@ button:hover {
         position: relative;
         left: 0;
         top: 0;
-        display: none; /* Hidden by default */
+        display: none;
+        /* Hidden by default */
         text-align: center;
         border-right: none;
         border-bottom: 2px solid #00ff00;
@@ -258,11 +308,82 @@ button:hover {
     }
 
     .sidebar.open {
-        display: block; /* Show sidebar when toggled */
+        display: block;
+        /* Show sidebar when toggled */
     }
 
     .content {
         margin-left: 0;
-        padding-top: 80px; /* Adjust for top menu */
+        padding-top: 80px;
+        /* Adjust for top menu */
     }
+}
+
+/* For Webkit Browsers (Chrome, Edge, Safari) */
+.sidebar::-webkit-scrollbar {
+    width: 10px; /* Slim scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #121212; /* Dark track to blend with background */
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #00ff00; /* Neon green scrollbar */
+    border-radius: 10px;
+    border: 2px solid #121212; /* Creates an outline effect */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #44ff44; /* Slightly brighter green on hover */
+}
+
+/* For Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #00ff00 #121212;
+}
+
+
+
+
+.game-container .glitch-title {
+    font-size: 2em;
+    animation: glitch2 1s infinite;
+}
+
+@keyframes glitch2 {
+    0% { text-shadow: 2px 2px red; }
+    50% { text-shadow: -2px -2px blue; }
+    100% { text-shadow: 2px 2px red; }
+}
+
+.game-container .command-box input {
+    background: #000;
+    color: #0f0;
+    border: 1px solid #0f0;
+    padding: 10px;
+    width: 60%;
+}
+
+.game-container button {
+    background: #0f0;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.game-container .score-container {
+    margin-top: 20px;
+}
+
+.game-container .progress-circle svg {
+    transform: rotate(-90deg);
+}
+
+.game-container #timer-display {
+    font-size: 1.5em;
+    color: red;
 }

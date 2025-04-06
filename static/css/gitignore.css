@@ -1,0 +1,373 @@
+/* Sidebar Styling */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+    left: -280px;
+    /* Hidden by default */
+    top: 0;
+    background-color: #111;
+    padding: 20px;
+    border-right: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: monospace;
+    overflow-y: auto;
+    transition: left 0.3s ease-in-out;
+}
+
+/* Sidebar Hover Effect */
+.sidebar:hover {
+    left: 0;
+    /* Slide in when hovered */
+}
+
+/* Sidebar Links */
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 12px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #00ff00;
+    font-size: 1.1em;
+    display: block;
+    padding: 8px;
+    transition: background 0.3s, transform 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(0, 255, 0, 0.2);
+    border-left: 3px solid #00ff00;
+    transform: translateX(5px);
+}
+
+/* Adjust Content When Sidebar is Open */
+.sidebar:hover~.content {
+    margin-left: 280px;
+}
+
+
+/* Terminal Cursor Effect */
+.sidebar ul li a::after {
+    content: "_";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+
+
+/* ================================== */
+/* 📱 Responsive Design Adjustments 📱 */
+/* ================================== */
+
+/* 📌 Tablets (Medium Screens) */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+        left: 0;
+        /* Sidebar always visible */
+    }
+
+    .content {
+        margin-left: 220px;
+    }
+}
+
+/* 📌 Mobile (Small Screens) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        left: 0;
+        top: 0;
+        display: none;
+        /* Hidden by default */
+        text-align: center;
+        border-right: none;
+        border-bottom: 2px solid #00ff00;
+    }
+
+    .sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sidebar ul li {
+        margin: 10px;
+    }
+
+    .sidebar ul li a {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    /* Sidebar Toggle Button */
+    .sidebar-toggle {
+        display: block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #00ff00;
+        color: #121212;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .sidebar.open {
+        display: block;
+        /* Show sidebar when toggled */
+    }
+
+    .content {
+        margin-left: 0;
+        padding-top: 80px;
+        /* Adjust for top menu */
+    }
+}
+
+/* For Webkit Browsers (Chrome, Edge, Safari) */
+.sidebar::-webkit-scrollbar {
+    width: 10px;
+    /* Slim scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #121212;
+    /* Dark track to blend with background */
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #00ff00;
+    /* Neon green scrollbar */
+    border-radius: 10px;
+    border: 2px solid #121212;
+    /* Creates an outline effect */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #44ff44;
+    /* Slightly brighter green on hover */
+}
+
+/* For Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #00ff00 #121212;
+}
+
+
+/* /main */
+
+.title {
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #00ff00;
+    animation: crt 1s infinite alternate;
+    text-align: center;
+    font-size: 2em;
+    margin: 40px auto 20px;
+    width: fit-content;
+}
+
+
+.title:hover {
+    animation: glitch 0.5s infinite alternate;
+}
+
+@keyframes glitch {
+    0% {
+        text-shadow: -3px 0 #ff0000, 3px 0 #00ff00;
+    }
+
+    50% {
+        text-shadow: 3px 0 #ff0000, -3px 0 #00ff00;
+    }
+
+    100% {
+        text-shadow: -3px 0 #ff0000, 3px 0 #00ff00;
+    }
+}
+
+/* Main Content Area */
+.content {
+    margin-left: 0;
+    padding: 40px;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #121212;
+    color: #00ff00;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+
+.sidebar-toggle {
+    display: none;
+}
+/* Introduction Section */
+.intro p,
+.intro ul li,
+.intro h3 {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.intro ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    margin-left: 0;
+}
+
+.intro ul li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.intro ul li::before {
+    content: "➤";
+    margin-right: 12px;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+
+/* Highlighted Code Explanation */
+.patterns-desc,
+.code-block {
+    background-color: #1e1e1e;
+    border-left: 4px solid #00ff00;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 1em;
+    overflow-x: auto;
+}
+
+.patterns-desc code,
+.code-block code {
+    color: #66ff66;
+}
+
+/* Examples Box */
+.examples {
+    margin-top: 30px;
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px dashed #00ff00;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.examples ul {
+    padding-left: 20px;
+}
+
+.examples li {
+    margin-bottom: 15px;
+}
+
+.explain {
+    display: block;
+    margin-top: 5px;
+    font-style: italic;
+    color: #88ff88;
+}
+
+/* Interactive Practice Area */
+.interactive-section {
+    margin-top: 30px;
+    padding: 20px;
+    background: #1c1c1c;
+    border: 1px solid #00ff00;
+    border-radius: 10px;
+}
+
+.interactive-section input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    background-color: #000;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.file-list {
+    padding: 10px;
+    background: #000;
+    border: 1px dashed #00ff00;
+    color: #00ff00;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+}
+
+/* Feedback Section Styling */
+#feedbackSection {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #44ff44;
+}
+
+/* Help / Tip Section */
+.help {
+    font-weight: bold;
+    color: #00ff00;
+    margin-top: 40px;
+}
+
+/* Pattern Examples Header */
+.pattern-examples,
+.practise_game {
+    font-weight: bold;
+    color: #55ff55;
+    margin-top: 25px;
+    font-size: 1.1em;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .content {
+        margin-left: 0;
+        padding: 20px;
+    }
+}
+
+#patternInput {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 1rem;
+    background: #111;
+    color: #0f0;
+    border: 1px solid #444;
+    border-radius: 5px;
+}
+
+.file-item {
+    padding: 5px 10px;
+    font-family: monospace;
+}
+
+.file-item.excluded {
+    background-color: #ff4444;
+    color: white;
+    text-decoration: line-through;
+}
+

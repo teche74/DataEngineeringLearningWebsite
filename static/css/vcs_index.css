@@ -393,3 +393,8 @@ ul li::before {
 .chapter-list a:hover {
     text-decoration: underline;
 }
+
+
+.sidebar-toggle {
+    display: none;
+}

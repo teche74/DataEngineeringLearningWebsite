@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Status - Interactive Learning</title>
+    <link rel="stylesheet" href="/static/css/checkingstatus.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.4/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            themeVariables: {
+                fontSize: "24px",
+                primaryColor: "#00ff00",
+                edgeLabelBackground: "#111",
+                fontFamily: "Courier New",
+                noteBkgColor: "#222",
+                noteTextColor: "#00ff00"
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Sidebar Toggle for Mobile -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">☰ Menu</button>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>📜 Chapters</h2>
+        <ul>
+            <li><a href="/VersionControlSystem/vcs_main.html">Why Git Exists?</a></li>
+            <li><a href="/VersionControlSystem/first_time_config.html">Chapter 1: Git Config</a></li>
+            <li><a href="/VersionControlSystem/getrepoways.html">Chapter 2: Ways to Get a Repo</a></li>
+            <li><a href="/VersionControlSystem/recordchanges.html">Chapter 3: Record Changes</a></li>
+            <li><a href="/VersionControlSystem/checking_status.html" class="active">Chapter 4: Checking File Status</a>
+            </li>
+            <li><a href="/VersionControlSystem/gitignore.html">Chapter 5: Ignoring Files</a></li>
+            <li><a href="/VersionControlSystem/StagedorUnstaged.html">Chapter 6: Staged vs Unstaged</a></li>
+            <li><a href="/VersionControlSystem/Committing.html">Chapter 7: Committing , Skip Stagging , Removing Files and Moving Files</a></li>
+            <li><a href="#">Chapter 8: Skip Staging</a></li>
+            <li><a href="#">Chapter 9: Remove Files</a></li>
+            <li><a href="#">Chapter 10: Move Files</a></li>
+            <li><a href="#">Chapter 11: Commit History</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1 class="title">CHAPTER 4: Checking File Status</h1>
+        <p>The <span class="code">git status</span> command shows which changes have been staged, which haven’t, and
+            which files aren't being tracked by Git.</p>
+        <p>Remember, Git operates only on <b>tracked</b> files. To track a file, run:</p>
+        <p><span class="code">git add &lt;filename&gt;</span></p>
+        <p>For a concise view, try:</p>
+        <p><span class="code">git status -s</span></p>
+
+        <p><b>Status Codes:</b></p>
+        <ul>
+            <li><span class="code">??</span> → Untracked file</li>
+            <li><span class="code">A</span> → File added to staging</li>
+            <li><span class="code">M</span> → Modified file</li>
+            <li><span class="code">D</span> → Deleted file</li>
+            <li><span class="code">R</span> → Renamed file</li>
+            <li><span class="code">U</span> → Unmerged conflict</li>
+            <li><span class="code">MM</span> → Staged + modified again</li>
+        </ul>
+
+        <h2>📈 Git Status Flow</h2>
+        <div class="merm-container">
+
+            <div class="mermaid">
+                graph TD;
+                Start["🎯 Start Git Tracking Process"] --> Create["📄 Create or Modify Files"];
+                Create --> CheckStatus["🔍 Run a Git Status Command"];
+
+                CheckStatus --> VerboseStatus["🧪 git status"];
+                CheckStatus --> ShortStatus["⚡ git status -s"];
+
+                VerboseStatus --> VerboseOutput["📜 Verbose Output<br>• Tracked/Untracked<br>• Staged/Unstaged<br>•
+                Helpful messages"];
+                ShortStatus --> ShortOutput["🔢 Short Output<br>• ?? = Untracked<br>• M = Modified<br>• A = Added"];
+
+                VerboseOutput --> VerboseUse["🧠 Great for Beginners"];
+                ShortOutput --> ShortUse["🚀 Script-friendly & Compact"];
+
+                VerboseUse --> Example1["📋 Sample:<br>modified: index.html<br>Untracked files:<br> style.css"];
+                ShortUse --> Example2["📋 Sample:<br>M index.html<br>?? style.css"];
+
+                classDef node fill:#222,stroke:#00ffcc,color:#ffffff;
+                classDef emphasis fill:#112211,stroke:#00cc88,color:#ccffcc;
+
+                class Start,Create,CheckStatus node;
+                class VerboseStatus,ShortStatus,VerboseOutput,ShortOutput node;
+                class VerboseUse,ShortUse emphasis;
+                class Example1,Example2 node;
+            </div>
+        </div>
+
+
+
+        <!-- Gamified Quiz -->
+        <div class="terminal-box" id="quiz-section">
+            <h2>🔍 Quiz: What Does '??' Mean?</h2>
+            <p><b>Question:</b> In <span class="code">git status -s</span>, what does <span class="code">??</span>
+                indicate?</p>
+            <ul>
+                <li><button onclick="checkAnswer(this, 'A')">A. File added to staging</button></li>
+                <li><button onclick="checkAnswer(this, 'B')">B. Modified file</button></li>
+                <li><button onclick="checkAnswer(this, 'C')">C. Untracked file</button></li>
+                <li><button onclick="checkAnswer(this, 'D')">D. Renamed file</button></li>
+            </ul>
+            <p id="quiz-result" class="quiz-result"></p>
+        </div>
+
+        <!-- Gamified Interactive Simulator -->
+        <div class="terminal-box" id="simulator-section">
+            <h2>💻 Terminal Simulator</h2>
+            <p>Type a command below and press Enter. (Try commands like <span class="code">git status</span> or <span
+                    class="code">git status -s</span>.)</p>
+            <div class="simulator">
+                <div class="prompt">user@repo:~$</div>
+                <input type="text" id="sim-input" placeholder="Enter git command here..."
+                    onkeypress="simulateInput(event)" />
+            </div>
+            <pre id="sim-output" class="sim-output"></pre>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/static/js/checkingstatus.js"></script>
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        }
+    </script>
+</body>
+
+</html>
